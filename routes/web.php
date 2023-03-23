@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
@@ -28,6 +29,8 @@ Route::get('/dashboard', function () {
 Route::prefix('admin')->group(function () {
     Route::resource('products', ProductController::class)
         ->middleware(['auth', 'verified']);
+    Route::resource('users', UserController::class)
+        ->middleware(['auth', 'verified','admin']);
 });
 
 
